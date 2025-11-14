@@ -156,9 +156,16 @@ btnLiberar.addEventListener('click', () => {
                     obs = statusDados.obs ? statusDados.obs.replace(/;/g, ',') : "";
                 }
                 
-                // Adiciona a linha ao CSV
-                dadosCSV += `${mesaNome};${statusDisplay};${nomeOcupante};${obs}\n`;
-                mesasEncontradas = true;
+                // 💡 NOVO CÓDIGO AQUI: 
+                // 2. Remove todas as quebras de linha (\n e \r) e substitui por espaço simples
+                obs = statusDados.obs ? statusDados.obs.replace(/(\r\n|\n|\r)/gm, ' ') : "";
+                // 3. (Opcional) Remove o ponto e vírgula, caso ainda use o ponto e vírgula como separador
+                obs = obs.replace(/;/g, ',');
+            }
+            
+            // Adiciona a linha ao CSV
+            dadosCSV += `${mesaNome};${statusDisplay};${nomeOcupante};${obs}\n`;
+                  
             });
 
             if (!mesasEncontradas) {
@@ -185,3 +192,4 @@ btnLiberar.addEventListener('click', () => {
     carregarStatusMesas();
 
 });
+
