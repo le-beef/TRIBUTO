@@ -10,14 +10,12 @@ while (!acessoPermitido) {
         alert("Acesso concedido!");
     } else {
         alert("Senha incorreta. Tente novamente.");
-        // Opcional: Se quiser redirecionar após tentativas, use:
-        // window.location.href = "https://google.com";
     }
 }
 // O restante do seu script.js só rodará se a senha estiver correta.
 
 document.addEventListener('DOMContentLoaded', () => {
-    // 1. Seletores (Mantidos)
+    // 1. Seletores
     const mesas = document.querySelectorAll('.mesa');
     const modalOverlay = document.getElementById('modal-mesa');
     const modalDisplayId = document.getElementById('mesa-id-display');
@@ -29,14 +27,12 @@ document.addEventListener('DOMContentLoaded', () => {
     let mesaSelecionada = null;
 
     // 2. ☁️ CARREGAR DADOS DO FIREBASE EM TEMPO REAL
-    // Usamos 'refMesas' definido no seu HTML para monitorar mudanças
     const carregarStatusMesas = () => {
-        // O Firebase vai chamar esta função toda vez que os dados mudarem (em qualquer dispositivo)
         refMesas.on('value', (snapshot) => {
-            const statusAtualizado = snapshot.val(); // Obtém todos os dados das mesas
+            const statusAtualizado = snapshot.val();
             
             mesas.forEach(mesa => {
-                const mesaId = mesa.id; // Ex: "mesa-26"
+                const mesaId = mesa.id;
                 const statusMesa = statusAtualizado && statusAtualizado[mesaId] ? statusAtualizado[mesaId] : null;
 
                 if (statusMesa && statusMesa.status === 'ocupada') {
@@ -51,7 +47,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     };
 
-    // 3. 🖱️ Adicionar ouvinte de clique para cada mesa (Inalterado)
+    // 3. 🖱️ Adicionar ouvinte de clique para cada mesa
     mesas.forEach(mesa => {
         mesa.addEventListener('click', () => {
             mesaSelecionada = mesa;
@@ -78,7 +74,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // 4. ☁️ Lógica de Ocupar/Atualizar - AGORA SALVA NO FIREBASE
+    // 4. ☁️ Lógica de Ocupar/Atualizar
     formOcupacao.addEventListener('submit', (e) => {
         e.preventDefault();
         
@@ -93,7 +89,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 timestamp: new Date().toISOString()
             };
 
-            // SALVA NO FIREBASE: A função carregarStatusMesas atualiza a interface
+            // SALVA NO FIREBASE
             refMesas.child(mesaSelecionada.id).set(dadosParaFirebase)
                 .then(() => {
                     modalOverlay.style.display = 'none';
@@ -105,38 +101,39 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    // 5. ☁️ Lógica de Liberar - AGORA COM CONFIRMAÇÃO
-btnLiberar.addEventListener('click', () => {
-    if (mesaSelecionada) {
-        
-        // 💡 NOVA LINHA: Adiciona a confirmação
-        const confirmar = confirm(`Tem certeza que deseja LIBERAR a mesa ${mesaSelecionada.dataset.nome}?`);
-        
-        if (confirmar) {
-            // REMOVE O DADO DO FIREBASE SOMENTE SE O USUÁRIO CLICAR EM 'OK'
-            refMesas.child(mesaSelecionada.id).remove()
-                .then(() => {
-                    modalOverlay.style.display = 'none';
-                    alert(`Mesa ${mesaSelecionada.dataset.nome} liberada e sincronizada!`);
-                })
-                .catch(error => {
-                    alert("Erro ao liberar no Firebase: " + error.message);
-                });
+    // 5. ☁️ Lógica de Liberar - COM CONFIRMAÇÃO
+    btnLiberar.addEventListener('click', () => {
+        if (mesaSelecionada) {
+            
+            // Adiciona a confirmação
+            const confirmar = confirm(`Tem certeza que deseja LIBERAR a mesa ${mesaSelecionada.dataset.nome}?`);
+            
+            if (confirmar) {
+                // REMOVE O DADO DO FIREBASE
+                refMesas.child(mesaSelecionada.id).remove()
+                    .then(() => {
+                        modalOverlay.style.display = 'none';
+                        alert(`Mesa ${mesaSelecionada.dataset.nome} liberada e sincronizada!`);
+                    })
+                    .catch(error => {
+                        alert("Erro ao liberar no Firebase: " + error.message);
+                    });
+            }
         }
-        // Se o usuário clicar em 'Cancelar', nada acontece, e o modal permanece aberto.
-    }
-});
-    // 6. Fechar Modal (Inalterado)
+    });
+
+    // 6. Fechar Modal
     btnFechar.addEventListener('click', () => {
         modalOverlay.style.display = 'none';
     });
     
-    // 7. 📊 Lógica de Exportação para CSV (AGORA LÊ O ESTADO ATUAL)
+    // 7. 📊 Lógica de Exportação para CSV (AGORA COM CORREÇÃO DE QUEBRA DE LINHA)
     btnExportar.addEventListener('click', () => {
-        // Pega o estado atual do Firebase (não espera o real-time)
+        // Pega o estado atual do Firebase
         refMesas.once('value').then((snapshot) => {
             const statusFirebase = snapshot.val() || {};
             
+            // Define o cabeçalho e o separador (ponto e vírgula)
             let dadosCSV = "Mesa;Status;Nome dos Ocupantes;Observacoes\n";
             let mesasEncontradas = false;
 
@@ -151,9 +148,14 @@ btnLiberar.addEventListener('click', () => {
 
                 if (statusDados && statusDados.status === 'ocupada') {
                     statusDisplay = "OCUPADA";
-                    // Limpa o texto para evitar quebras no CSV (substitui ';' por ',')
+                    
+                    // 1. Limpa o Nome (Substitui ';' por ',' para o CSV)
                     nomeOcupante = statusDados.nome ? statusDados.nome.replace(/;/g, ',') : "";
-                    obs = statusDados.obs ? statusDados.obs.replace(/;/g, ',') : "";
+                    
+                    // 💡 CORREÇÃO DE QUEBRA DE LINHA:
+                    // Remove todas as quebras de linha (\r\n, \n, \r) e substitui por espaço.
+                    // Em seguida, substitui ';' por ',' dentro do texto.
+                    obs = statusDados.obs ? statusDados.obs.replace(/(\r\n|\n|\r)/gm, ' ').replace(/;/g, ',') : "";
                 }
                 
                 // Adiciona a linha ao CSV
@@ -168,7 +170,7 @@ btnLiberar.addEventListener('click', () => {
 
             // Cria e inicia o download do arquivo
             const nomeArquivo = `Status_Mesas_${new Date().toISOString().slice(0, 10)}.csv`;
-            const blob = new Blob(['\ufeff', dadosCSV], { type: 'text/csv;charset=utf-8;' });
+            const blob = new Blob(['\ufeff', dadosCSV], { type: 'text/csv;charset=utf-8;' }); // \ufeff é o BOM para forçar o Excel a usar UTF-8
             const url = URL.createObjectURL(blob);
             
             const link = document.createElement('a');
