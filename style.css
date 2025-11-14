@@ -13,7 +13,7 @@ h1 {
 /* 🗺️ Estilos do Mapa */
 .mapa-container {
     /* Define o tamanho base do container para o posicionamento da imagem */
-min-height: 800px; /* Use um valor grande o suficiente para sua imagem */    
+min-height: 570px; /* Use um valor grande o suficiente para sua imagem */    
 width: 90vw; /* Usa 90% da largura da tela do dispositivo */
     max-width: 450px; /* Limita o tamanho máximo para telas grandes */
     margin: 0 auto;
@@ -193,4 +193,5 @@ width: 90vw; /* Usa 90% da largura da tela do dispositivo */
 
 #btn-exportar:hover {
     background-color: #0056b3;
+
 }
