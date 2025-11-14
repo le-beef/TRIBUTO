@@ -1,4 +1,20 @@
+// Proteção Simples (Não segura)
+const senhaCorreta = "4321"; 
+let acessoPermitido = false;
 
+while (!acessoPermitido) {
+    const senhaDigitada = prompt("Por favor, digite a senha para acessar o mapa:");
+    
+    if (senhaDigitada === senhaCorreta) {
+        acessoPermitido = true;
+        alert("Acesso concedido!");
+    } else {
+        alert("Senha incorreta. Tente novamente.");
+        // Opcional: Se quiser redirecionar após tentativas, use:
+        // window.location.href = "https://google.com";
+    }
+}
+// O restante do seu script.js só rodará se a senha estiver correta.
 
 document.addEventListener('DOMContentLoaded', () => {
     // 1. Seletores (Mantidos)

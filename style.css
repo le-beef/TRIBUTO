@@ -12,15 +12,15 @@ h1 {
 
 /* 🗺️ Estilos do Mapa */
 .mapa-container {
-    /* Define o tamanho base do container para o posicionamento da imagem */
-min-height: 570px; /* Use um valor grande o suficiente para sua imagem */    
-width: 90vw; /* Usa 90% da largura da tela do dispositivo */
-    max-width: 450px; /* Limita o tamanho máximo para telas grandes */
+    /* AJUSTE ESTES VALORES para a largura e altura reais da sua imagem */
+    width: 563px; 
+    height: 1000px;
     margin: 0 auto;
-    background-image: url('new.png'); /* 🖼️ Certifique-se de que o nome do arquivo está correto */
+    /* 🖼️ CERTIFIQUE-SE QUE SUA IMAGEM CHAMA new.png */
+    background-image: url('new.png'); 
     background-size: contain;
     background-repeat: no-repeat;
-    position: relative; /* Essencial para que as mesas sejam posicionadas relativamente a ele */
+    position: relative; 
     border: 1px solid #ccc;
     box-shadow: 0 0 10px rgba(0,0,0,0.1);
 }
@@ -28,8 +28,8 @@ width: 90vw; /* Usa 90% da largura da tela do dispositivo */
 /* 🖱️ Estilos das Mesas Clicáveis */
 .mesa {
     /* Tamanho da área clicável */
-    width: 35px; 
-    height: 35px; 
+    width: 30px; 
+    height: 30px; 
     background-color: rgba(255, 255, 255, 0); 
     position: absolute; 
     border: 0px solid #333;
@@ -46,58 +46,59 @@ width: 90vw; /* Usa 90% da largura da tela do dispositivo */
 /* style.css - CÓDIGO DE POSICIONAMENTO PARA MESAS 01 a 39 */
 
 /* MESAS */
-#mesa-01 { top: 10.0%; left: 10.0%; }
-#mesa-02 { top: 10.0%; left: 10.0%; }
-#mesa-03 { top: 10.0%; left: 10.0%; }
-#mesa-04 { top: 10.0%; left: 10.0%; }
-#mesa-05 { top: 10.0%; left: 10.0%; }
-#mesa-06 { top: 10.0%; left: 10.0%; }
-#mesa-07 { top: 10.0%; left: 10.0%; }
-#mesa-08 { top: 10.0%; left: 10.0%; }
-#mesa-09 { top: 10.0%; left: 10.0%; }
-#mesa-10 { top: 10.0%; left: 10.0%; }
-#mesa-11 { top: 10.0%; left: 10.0%; }
-#mesa-12 { top: 10.0%; left: 10.0%; }
-#mesa-13 { top: 10.0%; left: 10.0%; }
-#mesa-14 { top: 10.0%; left: 10.0%; }
-#mesa-15 { top: 10.0%; left: 10.0%; }
-#mesa-16 { top: 10.0%; left: 10.0%; }
-#mesa-17 { top: 10.0%; left: 10.0%; }
-#mesa-18 { top: 10.0%; left: 10.0%; }
-#mesa-19 { top: 10.0%; left: 10.0%; }
-#mesa-20 { top: 10.0%; left: 10.0%; }
-#mesa-21 { top: 10.0%; left: 10.0%; }
-#mesa-22 { top: 10.0%; left: 10.0%; }
-#mesa-23 { top: 10.0%; left: 10.0%; }
-#mesa-24 { top: 10.0%; left: 10.0%; }
-#mesa-25 { top: 10.0%; left: 10.0%; }
-#mesa-26 { top: 10.0%; left: 10.0%; }
-#mesa-27 { top: 10.0%; left: 10.0%; }
-#mesa-28 { top: 10.0%; left: 10.0%; }
-#mesa-29 { top: 10.0%; left: 10.0%; }
-#mesa-30 { top: 10.0%; left: 10.0%; }
+#mesa-01 { top: 319px; left: 138px; }
+#mesa-02 { top: 319px; left: 184px; }
+#mesa-03 { top: 319px; left: 233px; }
+#mesa-04 { top: 319px; left: 280px; }
+#mesa-05 { top: 277px; left: 280px; }
+#mesa-06 { top: 277px; left: 233px; }
+#mesa-07 { top: 277px; left: 184px; }
+#mesa-08 { top: 277px; left: 138px; }
+#mesa-09 { top: 234px; left: 138px; }
+#mesa-10 { top: 234px; left: 184px; }
+#mesa-11 { top: 234px; left: 233px; }
+#mesa-12 { top: 234px; left: 280px; }
+#mesa-13 { top: 191px; left: 280px; }
+#mesa-14 { top: 191px; left: 233px; }
+#mesa-15 { top: 191px; left: 184px; }
+#mesa-16 { top: 191px; left: 138px; }
+#mesa-17 { top: 149px; left: 138px; }
+#mesa-18 { top: 149px; left: 184px; }
+#mesa-19 { top: 149px; left: 233px; }
+#mesa-20 { top: 149px; left: 280px; }
+#mesa-21 { top: 105px; left: 280px; }
+#mesa-22 { top: 105px; left: 233px; }
+#mesa-23 { top: 105px; left: 184px; }
+#mesa-24 { top: 105px; left: 136px; }
+#mesa-25 { top: 105px; left: 86px; }
+#mesa-26 { top: 62px; left: 86px; }
+#mesa-27 { top: 62px; left: 136px; }
+#mesa-28 { top: 62px; left: 184px; }
+#mesa-29 { top: 62px; left: 233px; }
+#mesa-30 { top: 62px; left: 280px; }
 
 /* BISTRO */
-#mesa-31 { top: 10.0%; left: 10.0%; }
-#mesa-32 { top: 10.0%; left: 10.0%; }
-#mesa-33 { top: 10.0%; left: 10.0%; }
-#mesa-34 { top: 10.0%; left: 10.0%; }
-#mesa-35 { top: 10.0%; left: 10.0%; }
-#mesa-36 { top: 10.0%; left: 10.0%; }
-#mesa-37 { top: 10.0%; left: 10.0%; }
-#mesa-38 { top: 10.0%; left: 10.0%; }
-
+#mesa-31 { top: 87px; left: 327px; }
+#mesa-32 { top: 140px; left: 327px; }
+#mesa-33 { top: 194px; left: 327px; }
+#mesa-34 { top: 247px; left: 327px; }
+#mesa-35 { top: 301px; left: 327px; }
+#mesa-36 { top: 375px; left: 166px; }
+#mesa-37 { top: 375px; left: 217px; }
+#mesa-38 { top: 375px; left: 267px; }
 
 /* MESAZANINO */
-#mesa-41 { top: 87.8%; left: 29.5%; }
-#mesa-42 { top: 87.8%; left: 37.9%; }
-#mesa-43 { top: 87.8%; left: 46.6%; }
-#mesa-44 { top: 83.2%; left: 51.08%; }
-#mesa-45 { top: 77.8%; left: 51.08%; }
-#mesa-46 { top: 72.1%; left: 51.08%; }
-#mesa-47 { top: 66.8%; left: 51.08%; }
-#mesa-48 { top: 61.2%; left: 51.08%; }
-#mesa-49 { top: 55.8%; left: 51.08%; }
+
+/* LINHA 4 */
+#mesa-41 { top: 881px; left: 172px; }
+#mesa-42 { top: 881px; left: 221px; }
+#mesa-43 { top: 881px; left: 271px; }
+#mesa-44 { top: 837px; left: 296px; }
+#mesa-45 { top: 782px; left: 296px; }
+#mesa-46 { top: 727px; left: 296px; }
+#mesa-47 { top: 673px; left: 296px; }
+#mesa-48 { top: 617px; left: 296px; }
+#mesa-49 { top: 561px; left: 296px; }
 /* 📌 FIM DO POSICIONAMENTO */
 
 /* Estado da Mesa Ocupada */
@@ -193,5 +194,4 @@ width: 90vw; /* Usa 90% da largura da tela do dispositivo */
 
 #btn-exportar:hover {
     background-color: #0056b3;
-
 }
