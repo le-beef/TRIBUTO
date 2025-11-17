@@ -38,6 +38,32 @@ h2 {
     box-shadow: 0 0 10px rgba(0,0,0,0.1);
 }
 
+/* Estilos para a Lista de Mesas Ocupadas */
+.lista-ocupacao-container {
+    max-width: 523px;
+    margin: 0px auto;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 0px;
+    background-color: #fff;
+    text-align: left;
+}
+
+#lista-mesas-ocupadas {
+    list-style: none;
+    padding: 0;
+}
+
+#lista-mesas-ocupadas li {
+    padding: 10px 0;
+    border-bottom: 2px dotted #818181;
+    font-size: 14px;
+}
+
+#lista-mesas-ocupadas li:last-child {
+    border-bottom: none;
+}
+
 /* 🖱️ Estilos das Mesas Clicáveis */
 .mesa {
     /* Tamanho da área clicável */
@@ -101,7 +127,6 @@ h2 {
 #mesa-38 { top: 375px; left: 267px; }
 
 /* MESAZANINO */
-
 /* LINHA 4 */
 #mesa-41 { top: 881px; left: 172px; }
 #mesa-42 { top: 881px; left: 221px; }
@@ -167,17 +192,25 @@ h2 {
     text-align: left; /* Alinha o texto interno do modal */
 }
 
-.modal-content label, .modal-content input, .modal-content textarea, .modal-content button {
+/* 💡 CORREÇÃO/ATUALIZAÇÃO DE ESTILOS DE FORMULÁRIO */
+.modal-content label {
     display: block;
     width: 100%;
-    margin-top: 10px;
+    margin-top: 10px; /* Mais espaço acima do label */
+    margin-bottom: 5px;
+    font-weight: bold;
 }
 
-.modal-content input, .modal-content textarea {
+.modal-content input[type="text"],
+.modal-content input[type="number"], /* NOVO: Estilo para o campo Valor */
+.modal-content textarea,
+.modal-content select { /* NOVO: Estilo para o campo Pagamento */
+    width: 100%;
     padding: 10px;
+    margin-bottom: 10px; /* Menos margem entre os campos */
     border: 1px solid #ccc;
     border-radius: 4px;
-    box-sizing: border-box;
+    box-sizing: border-box; /* Garante que padding e border sejam incluídos na largura */
 }
 
 .modal-content button {
@@ -205,7 +238,23 @@ h2 {
     transition: background-color 0.3s;
 }
 
+/* Estilo para o botão de Reset */
+.btn-perigo {
+    background-color: #dc3545; /* Vermelho */
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    margin-left: 10px; /* Separar do botão de exportar */
+    transition: background-color 0.2s;
+}
+
+.btn-perigo:hover {
+    background-color: #c82333;
+}
+
 #btn-exportar:hover {
     background-color: #0056b3;
-
 }
