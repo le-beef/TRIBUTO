@@ -257,4 +257,58 @@ h2 {
 
 #btn-exportar:hover {
     background-color: #0056b3;
+
+}
+
+/* --- Estilos do Rodapé SIMPLIFICADO (APENAS VERSÃO) --- */
+.rodape-versao {
+    margin-top: 50px;
+    padding: 15px 20px;
+    border-top: 1px solid #ccc;
+    background-color: #f0f0f0;
+    text-align: center; /* Centraliza o conteúdo (o div info-versao) */
+    font-size: 12px;
+    color: #666;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+/* Centraliza o texto, já que não temos logo para forçar o alinhamento à direita */
+.info-versao {
+    text-align: center;
+    padding: 0; 
+}
+
+
+/* --- Media Query para Dispositivos Móveis (Solução: Manter PX) --- */
+@media (max-width: 600px) {
+    
+    /* APLICA ESCALA DE REDUÇÃO NO CONTAINER DO MAPA.
+    (0.66 é um palpite. Você pode precisar ajustar!)
+    */
+    .mapa-container {
+        transform: scale(0.70);
+        transform-origin: top center; 
+        
+        /* ⚠️ AJUSTE MANUAL: Isso puxa o mapa para a esquerda para centralizar após a escala. */
+        margin-left: -97px; /* **TESTE E AJUSTE ESTE VALOR** (Ex: -30px, -70px) no seu celular */
+    }
+    
+    /* Faz a lista de ocupação se ajustar à largura da tela */
+    .lista-ocupacao-container {
+        width: 90% auto;
+        max-width: 90% auto;
+	margin-top: -290px;
+        margin-left: -3px auto;
+    }
+
+/* ✅ CORREÇÃO FINAL: Remove a margem superior do rodapé APENAS NO CELULAR */
+    .rodape-versao {
+        margin-top: 5px; 
+    }
+
+    /* Reduz o tamanho da fonte do cabeçalho */
+    h1, h2 {
+        font-size: 1.4em;
+    }
 }
