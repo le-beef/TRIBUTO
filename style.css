@@ -240,15 +240,14 @@ h2 {
 
 /* Estilo para o botão de Reset */
 .btn-perigo {
-    background-color: #dc3545; /* Vermelho */
+    background-color: #dc3545; 
     color: white;
     border: none;
     padding: 10px 15px;
     border-radius: 5px;
     cursor: pointer;
     font-weight: bold;
-    margin-left: 10px; /* Separar do botão de exportar */
-    transition: background-color 0.2s;
+    
 }
 
 .btn-perigo:hover {
@@ -257,7 +256,12 @@ h2 {
 
 #btn-exportar:hover {
     background-color: #0056b3;
+}
 
+.botoes-rodape {
+    text-align: center;
+    margin-top: 20px; /* Adiciona bom espaçamento acima do botão */
+    margin-bottom: 0px; /* Adiciona espaçamento abaixo do botão */
 }
 
 /* --- Estilos do Rodapé SIMPLIFICADO (APENAS VERSÃO) --- */
@@ -312,3 +316,4 @@ h2 {
         font-size: 1.4em;
     }
 }
+
