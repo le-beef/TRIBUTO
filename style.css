@@ -260,7 +260,7 @@ h2 {
 
 .botoes-rodape {
     text-align: center;
-    margin-top: 20px; /* Adiciona bom espaçamento acima do botão */
+    margin-top: 10px; /* Adiciona bom espaçamento acima do botão */
     margin-bottom: 0px; /* Adiciona espaçamento abaixo do botão */
 }
 
@@ -316,4 +316,5 @@ h2 {
         font-size: 1.4em;
     }
 }
+
 
