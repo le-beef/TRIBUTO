@@ -302,7 +302,7 @@ h2 {
     .lista-ocupacao-container {
         width: 90% auto;
         max-width: 90% auto;
-	margin-top: -290px;
+	margin-top: -300px;
         margin-left: -3px auto;
     }
 
@@ -316,5 +316,6 @@ h2 {
         font-size: 1.4em;
     }
 }
+
 
 
