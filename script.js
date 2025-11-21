@@ -218,6 +218,14 @@ document.addEventListener('DOMContentLoaded', () => {
     
     // 7. 📊 Lógica de Exportação para CSV 
     btnExportar.addEventListener('click', () => {
+        
+        // **INÍCIO DA NOVA PARTE**
+        // Adiciona a confirmação do usuário antes de continuar
+        if (!confirm('Deseja realmente exportar a lista de ocupação?')) {
+            return; // Cancela a exportação se o usuário clicar em "Cancelar"
+        }
+        // **FIM DA NOVA PARTE**
+        
         // Pega o estado atual do Firebase
         refMesas.once('value').then((snapshot) => {
             const statusFirebase = snapshot.val() || {};
