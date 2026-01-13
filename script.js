@@ -1,5 +1,5 @@
 // Proteção Simples (Não segura)
-const senhaCorreta = "4444"; 
+const senhaCorreta = "7878"; 
 let acessoPermitido = false;
 
 while (!acessoPermitido) {
@@ -282,4 +282,5 @@ document.addEventListener('DOMContentLoaded', () => {
     // Inicia o carregamento
     carregarStatusMesas();
 });
+
 
