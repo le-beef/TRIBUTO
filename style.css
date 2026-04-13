@@ -160,13 +160,14 @@ h2 {
     color: white;
 }
 
+/* --- AJUSTE: MANTÉM O NÚMERO E ESCONDE O X --- */
+
 .mesa.ocupada .numero {
-    display: none; 
+    display: inline-block; /* Mantém o número visível mesmo ocupada */
 }
 
 .mesa.ocupada .x-status {
-    display: block; 
-    line-height: 35px;
+    display: none; /* Esconde o 'X' permanentemente quando ocupada */
 }
 
 /* 📝 Estilos do Modal (Pop-up) */
