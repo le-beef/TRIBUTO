@@ -74,7 +74,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     
                     listaHTML += `
                         <li>
-                            <strong>Mesa:</strong> ${mesaNome} | <strong>Pessoas:</strong> ${qtd} | <strong>Cliente:</strong> ${nome}
+                            <strong>Mesa:</strong> ${mesaNome} | <strong>QT.:</strong> ${qtd} | <strong>Nome:</strong> ${nome}
                             
                         </li>
                     `;
