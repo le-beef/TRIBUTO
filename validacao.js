@@ -1,3 +1,31 @@
+// =========================
+// BLOQUEIO DE TELA (SENHA DA PORTARIA)
+// =========================
+const senhaPortaria = "120805"; // Mude para a senha que a sua equipe da portaria vai usar
+const VERSAO_VALIDACAO = "v1";
+
+if (localStorage.getItem("logado_portaria") !== VERSAO_VALIDACAO) {
+    let acessoPermitido = false;
+    
+    while (!acessoPermitido) {
+        const senhaDigitada = prompt("🛑 ÁREA RESTRITA DA PORTARIA\nDigite a senha de acesso para validar ingressos:");
+        
+        // Se a pessoa clicar em "Cancelar", a página fica em branco
+        if (senhaDigitada === null) {
+            document.body.innerHTML = "<h1 style='color:#d4af37; text-align:center; margin-top:50px;'>Acesso Negado.</h1>";
+            break;
+        }
+        
+        // Se a senha estiver correta
+        if (senhaDigitada === senhaPortaria) {
+            acessoPermitido = true;
+            localStorage.setItem("logado_portaria", VERSAO_VALIDACAO);
+            alert("✅ Acesso liberado!");
+        } else {
+            alert("❌ Senha incorreta.");
+        }
+    }
+}
 const codigoInput =
 document.getElementById("codigo");
 
