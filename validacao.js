@@ -16,6 +16,18 @@ document.getElementById("btn-pesquisar");
 const btnListar =
 document.getElementById("btn-listar");
 
+codigoInput.addEventListener('keypress', function(e) {
+    if (e.key === 'Enter') {
+        e.preventDefault();
+        btnValidar.click();
+        
+        setTimeout(() => {
+            codigoInput.value = '';
+            codigoInput.focus();
+        }, 500);
+    }
+});
+
 
 // =========================
 // VALIDAR QR/CÓDIGO
