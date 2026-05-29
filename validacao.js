@@ -359,11 +359,23 @@ if (codParam) {
 }
 
 // =========================================================================
-// NOVO: CALCULAR TOTAIS GERAIS EM TEMPO REAL (MANTÉM O TEMA LE BEEF)
+// NOVO: CALCULAR TOTAIS GERAIS EM TEMPO REAL (MANTÉM O ESTILO ORIGINAL)
 // =========================================================================
-const totaisGeraisDiv = document.getElementById("totais-gerais");
+(function() {
+    // Cria o elemento do rodapé automaticamente via JS para não precisar mexer no HTML
+    let totaisGeraisDiv = document.getElementById("totais-gerais");
+    if (!totaisGeraisDiv) {
+        totaisGeraisDiv = document.createElement("div");
+        totaisGeraisDiv.id = "totais-gerais";
+        const container = document.querySelector(".container");
+        if (container) {
+            container.appendChild(totaisGeraisDiv);
+        } else {
+            document.body.appendChild(totaisGeraisDiv);
+        }
+    }
 
-if (totaisGeraisDiv) {
+    // Escuta o banco de dados em tempo real
     refReservas.on("value", (snapshot) => {
         const reservas = snapshot.val();
         
@@ -387,42 +399,40 @@ if (totaisGeraisDiv) {
             }
         }
 
-        // Renderiza o painel no rodapé combinando com o tema escuro/dourado
+        // Renderiza o painel herdando o fundo escuro e letras brancas originais do seu CSS
         totaisGeraisDiv.innerHTML = `
             <div style="
-                margin-top: 40px;
+                margin-top: 35px;
                 padding: 20px;
-                background: #111;
-                border: 2px solid #d4af37;
-                border-radius: 15px;
+                border: 1px solid #d4af37;
+                border-radius: 12px;
                 text-align: center;
-                color: white;
             ">
-                <h3 style="margin-top: 0; color: #d4af37; letter-spacing: 1px; font-size: 1.2rem;">📊 RESUMO GERAL DO EVENTO</h3>
+                <h3 style="margin-top: 0; color: #d4af37; letter-spacing: 1px;">📊 RESUMO GERAL DO EVENTO</h3>
                 
                 <div style="display: flex; justify-content: space-around; margin-top: 15px;">
                     <div>
                         <span style="font-size: 1.6em;">✅</span>
                         <br>
-                        <strong style="color: #28a745; font-size: 1.5em;">${totalEntrou}</strong>
+                        <strong style="font-size: 1.4em;">${totalEntrou}</strong>
                         <br>
-                        <span style="font-size: 0.8em; color: #aaa; font-weight: bold;">JÁ ENTRARAM</span>
+                        <span style="font-size: 0.85em; opacity: 0.7; font-weight: bold;">JÁ ENTRARAM</span>
                     </div>
                     <div>
                         <span style="font-size: 1.6em;">⛔</span>
                         <br>
-                        <strong style="color: #dc3545; font-size: 1.5em;">${totalFaltam}</strong>
+                        <strong style="font-size: 1.4em;">${totalFaltam}</strong>
                         <br>
-                        <span style="font-size: 0.8em; color: #aaa; font-weight: bold;">FALTAM ENTRAR</span>
+                        <span style="font-size: 0.85em; opacity: 0.7; font-weight: bold;">FALTAM ENTRAR</span>
                     </div>
                 </div>
                 
-                <hr style="border: 0; border-top: 1px solid #222; margin: 15px 0;">
+                <hr style="border: 0; border-top: 1px solid #333; margin: 15px 0;">
                 
-                <p style="margin: 0; color: #eee; font-size: 1rem;">
+                <p style="margin: 0; font-size: 1em;">
                     <strong>👥 Total de Convidados na Lista:</strong> ${totalEntrou + totalFaltam}
                 </p>
             </div>
         `;
     });
-}
+})();
