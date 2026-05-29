@@ -81,6 +81,7 @@ h2 {
     transition: background-color 0.3s, border-color 0.3s;
 }
 
+
 /* 📌 POSICIONAMENTO DAS MESAS - VOCÊ DEVE AJUSTAR ESTES VALORES */
 /* style.css - CÓDIGO DE POSICIONAMENTO PARA MESAS 01 a 39 */
 
@@ -138,7 +139,6 @@ h2 {
 #mesa-48 { top: 617px; left: 296px; }
 #mesa-49 { top: 561px; left: 296px; }
 /* 📌 FIM DO POSICIONAMENTO */
-
 /* Estado da Mesa Ocupada */
 .mesa.ocupada {
     background-color: rgba(255, 0, 0, 0.7); /* Fundo vermelho quando ocupada */
@@ -244,6 +244,18 @@ h2 {
 .btn-ocupar { background-color: #27ae60; color: white; }
 .btn-liberar { background-color: #e74c3c; color: white; }
 .btn-fechar { background-color: #95a5a6; color: white; }
+
+#btn-emitir-vale{
+    background: linear-gradient(135deg,#000,#1b1b1b);
+    color: #d4af37;
+    border: 2px solid #d4af37;
+    font-weight: bold;
+}
+
+#btn-emitir-vale:hover{
+    transform: scale(1.03);
+    transition: .2s;
+}
 
 /* Estilo do botão de exportação */
 #btn-exportar {

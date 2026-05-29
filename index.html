@@ -9,7 +9,19 @@
 <body>
     
    <h1>Mapa de Mesas - Le Beef</h1>
-    <h2>BANDA FÊNIX<br>06/06/2026 - 21H</h2>
+   <h2 id="evento-info">
+
+    <span id="evento-nome">
+        BANDA FÊNIX
+    </span>
+
+    <br>
+
+    <span id="evento-data">
+        06/06/2026 - 21H
+    </span>
+
+</h2>
     <br>
     <button id="btn-exportar">📊 Exportar Lista de Ocupação (.csv)</button>
     <br><br>
@@ -116,11 +128,27 @@
                     </div>
                 </div>
 
-                <div class="botoes-modal">
-                    <button type="submit" class="btn-ocupar">Confirmar</button>
-                    <button type="button" class="btn-liberar" data-mesa-id="">Liberar</button>
-                    <button type="button" class="btn-fechar">Fechar</button> 
-                </div>
+           <div class="botoes-modal">
+    <button type="submit" class="btn-ocupar">
+        Confirmar
+    </button>
+
+    <button type="button" id="btn-emitir-vale">
+        Emitir Vale
+    </button>
+
+	<button id="btn-baixar-vale">
+	Baixar Vale
+   </button>
+
+    <button type="button" class="btn-liberar" data-mesa-id="">
+        Liberar
+    </button>
+
+    <button type="button" class="btn-fechar">
+        Fechar
+    </button>
+</div>
             </form>
         </div>
     </div>
@@ -143,6 +171,7 @@
 
     <script>
 
+
         // Cole o objeto firebaseConfig que você copiou do Firebase Console
         const firebaseConfig = {
     apiKey: "AIzaSyBLlNftQtVV_9O398RvaN_TASHv878V4aY",
@@ -159,7 +188,11 @@
         // Cria uma referência para o seu banco de dados
         const db = firebase.database(); 
         const refMesas = db.ref('mesas_status'); // Onde os dados serão salvos
-    </script>
+	const refReservas = db.ref('reservas_vip');
+   </script>
+	<script src="https://cdn.jsdelivr.net/npm/qrcode/build/qrcode.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
     <script src="./script.js"></script>
 </body>
 
