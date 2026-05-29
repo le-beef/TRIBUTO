@@ -662,9 +662,35 @@ async () => {
     }
 });
 
+
+
 // =========================
 // LÓGICA DA CÂMERA (SCANNER)
 // =========================
+// Função para gerar um som de "Bip" rápido
+function tocarBipe() {
+    try {
+        const AudioContext = window.AudioContext || window.webkitAudioContext;
+        const ctx = new AudioContext();
+        const oscillator = ctx.createOscillator();
+        const gainNode = ctx.createGain();
+
+        oscillator.type = 'sine'; // Tipo do som
+        oscillator.frequency.setValueAtTime(880, ctx.currentTime); // Frequência (Nota Lá, bem aguda)
+        
+        // Configura o volume e a duração (0.15 segundos)
+        gainNode.gain.setValueAtTime(1, ctx.currentTime);
+        gainNode.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.15);
+
+        oscillator.connect(gainNode);
+        gainNode.connect(ctx.destination);
+
+        oscillator.start();
+        oscillator.stop(ctx.currentTime + 0.15);
+    } catch (e) {
+        console.error("Áudio não suportado:", e);
+    }
+}
 btnCamera.addEventListener("click", () => {
     // Se o leitor já estiver aberto, o clique vai fechar a câmera
     if (leitorDiv.style.display === "block") {
@@ -693,6 +719,9 @@ btnCamera.addEventListener("click", () => {
         },
         (textoDecodificado) => {
             // SUCESSO: ACHOU UM QR CODE!
+            
+            // 0. Toca o sinal sonoro 🔊
+            tocarBipe();
             
             // 1. Coloca o texto lido dentro do campo de input
             codigoInput.value = textoDecodificado;
