@@ -6,6 +6,8 @@
 
 <title>Validação Le Beef</title>
 
+<script src="https://unpkg.com/html5-qrcode"></script>
+
 <link rel="stylesheet" href="validacao.css">
 
 <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
@@ -20,6 +22,12 @@
     <h2>VALIDAÇÃO INGRESSO</h2>
 
     <!-- VALIDAR QR/CÓDIGO -->
+  <button id="btn-camera" style="background: #333; color: #d4af37; margin-bottom: 15px;">
+        📷 ABRIR CÂMERA
+    </button>
+    
+    <div id="leitor" style="width: 100%; margin-bottom: 20px; display: none; border-radius: 12px; overflow: hidden;"></div>
+
     <input
         type="text"
         id="codigo"

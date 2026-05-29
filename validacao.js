@@ -1,31 +1,3 @@
-// =========================
-// BLOQUEIO DE TELA (SENHA DA PORTARIA)
-// =========================
-const senhaPortaria = "120805"; // Mude para a senha que a sua equipe da portaria vai usar
-const VERSAO_VALIDACAO = "v1";
-
-if (localStorage.getItem("logado_portaria") !== VERSAO_VALIDACAO) {
-    let acessoPermitido = false;
-    
-    while (!acessoPermitido) {
-        const senhaDigitada = prompt("🛑 ÁREA RESTRITA DA PORTARIA\nDigite a senha de acesso para validar ingressos:");
-        
-        // Se a pessoa clicar em "Cancelar", a página fica em branco
-        if (senhaDigitada === null) {
-            document.body.innerHTML = "<h1 style='color:#d4af37; text-align:center; margin-top:50px;'>Acesso Negado.</h1>";
-            break;
-        }
-        
-        // Se a senha estiver correta
-        if (senhaDigitada === senhaPortaria) {
-            acessoPermitido = true;
-            localStorage.setItem("logado_portaria", VERSAO_VALIDACAO);
-            alert("✅ Acesso liberado!");
-        } else {
-            alert("❌ Senha incorreta.");
-        }
-    }
-}
 const codigoInput =
 document.getElementById("codigo");
 
@@ -44,6 +16,10 @@ document.getElementById("btn-pesquisar");
 const btnListar =
 document.getElementById("btn-listar");
 
+const btnCamera = document.getElementById("btn-camera");
+const leitorDiv = document.getElementById("leitor");
+let html5QrCode; // Variável para guardar o leitor
+
 codigoInput.addEventListener('keypress', function(e) {
     if (e.key === 'Enter') {
         e.preventDefault();
@@ -55,7 +31,6 @@ codigoInput.addEventListener('keypress', function(e) {
         }, 500);
     }
 });
-
 
 // =========================
 // VALIDAR QR/CÓDIGO
@@ -687,4 +662,59 @@ async () => {
         </div>
         `;
     }
+});
+
+// =========================
+// LÓGICA DA CÂMERA (SCANNER)
+// =========================
+btnCamera.addEventListener("click", () => {
+    // Se o leitor já estiver aberto, o clique vai fechar a câmera
+    if (leitorDiv.style.display === "block") {
+        if (html5QrCode) {
+            html5QrCode.stop().then(() => {
+                leitorDiv.style.display = "none";
+                btnCamera.innerText = "📷 ABRIR CÂMERA";
+            }).catch(err => console.error("Erro ao parar câmera:", err));
+        }
+        return;
+    }
+
+    // Se estiver fechado, vamos abrir a câmera
+    leitorDiv.style.display = "block";
+    btnCamera.innerText = "🛑 FECHAR CÂMERA";
+
+    // Inicializa o leitor
+    html5QrCode = new Html5Qrcode("leitor");
+
+    // Inicia a câmera (facingMode: "environment" força a câmera traseira)
+    html5QrCode.start(
+        { facingMode: "environment" }, 
+        {
+            fps: 10,    // Quantidade de leituras por segundo
+            qrbox: { width: 250, height: 250 } // Tamanho do quadrado de leitura
+        },
+        (textoDecodificado) => {
+            // SUCESSO: ACHOU UM QR CODE!
+            
+            // 1. Coloca o texto lido dentro do campo de input
+            codigoInput.value = textoDecodificado;
+            
+            // 2. Para a câmera e esconde o visor
+            html5QrCode.stop().then(() => {
+                leitorDiv.style.display = "none";
+                btnCamera.innerText = "📷 ABRIR CÂMERA";
+                
+                // 3. CLICA SOZINHO NO BOTÃO DE VALIDAR!
+                btnValidar.click();
+            });
+        },
+        (mensagemErro) => {
+            // Ignora erros contínuos (ele fica dando erro enquanto não foca no QR code, é normal)
+        }
+    ).catch(err => {
+        alert("Erro ao acessar a câmera. Verifique se você deu permissão no navegador.");
+        console.error(err);
+        leitorDiv.style.display = "none";
+        btnCamera.innerText = "📷 ABRIR CÂMERA";
+    });
 });
