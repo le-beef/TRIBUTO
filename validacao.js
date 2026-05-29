@@ -357,3 +357,72 @@ if (codParam) {
     codigoInput.value = codParam;
     btnValidar.click();
 }
+
+// =========================================================================
+// NOVO: CALCULAR TOTAIS GERAIS EM TEMPO REAL (MANTÉM O TEMA LE BEEF)
+// =========================================================================
+const totaisGeraisDiv = document.getElementById("totais-gerais");
+
+if (totaisGeraisDiv) {
+    refReservas.on("value", (snapshot) => {
+        const reservas = snapshot.val();
+        
+        let totalEntrou = 0;
+        let totalFaltam = 0;
+
+        if (reservas) {
+            for (const reservaId in reservas) {
+                const reserva = reservas[reservaId];
+                
+                if (reserva.convidados && typeof reserva.convidados === "object") {
+                    for (const key in reserva.convidados) {
+                        const convidado = reserva.convidados[key];
+                        if (convidado.usado) {
+                            totalEntrou++;
+                        } else {
+                            totalFaltam++;
+                        }
+                    }
+                }
+            }
+        }
+
+        // Renderiza o painel no rodapé combinando com o tema escuro/dourado
+        totaisGeraisDiv.innerHTML = `
+            <div style="
+                margin-top: 40px;
+                padding: 20px;
+                background: #111;
+                border: 2px solid #d4af37;
+                border-radius: 15px;
+                text-align: center;
+                color: white;
+            ">
+                <h3 style="margin-top: 0; color: #d4af37; letter-spacing: 1px; font-size: 1.2rem;">📊 RESUMO GERAL DO EVENTO</h3>
+                
+                <div style="display: flex; justify-content: space-around; margin-top: 15px;">
+                    <div>
+                        <span style="font-size: 1.6em;">✅</span>
+                        <br>
+                        <strong style="color: #28a745; font-size: 1.5em;">${totalEntrou}</strong>
+                        <br>
+                        <span style="font-size: 0.8em; color: #aaa; font-weight: bold;">JÁ ENTRARAM</span>
+                    </div>
+                    <div>
+                        <span style="font-size: 1.6em;">⛔</span>
+                        <br>
+                        <strong style="color: #dc3545; font-size: 1.5em;">${totalFaltam}</strong>
+                        <br>
+                        <span style="font-size: 0.8em; color: #aaa; font-weight: bold;">FALTAM ENTRAR</span>
+                    </div>
+                </div>
+                
+                <hr style="border: 0; border-top: 1px solid #222; margin: 15px 0;">
+                
+                <p style="margin: 0; color: #eee; font-size: 1rem;">
+                    <strong>👥 Total de Convidados na Lista:</strong> ${totalEntrou + totalFaltam}
+                </p>
+            </div>
+        `;
+    });
+}
