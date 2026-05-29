@@ -1,8 +1,8 @@
 // LOGIN PERSISTENTE
-const senhaCorreta = "1234";
+const senhaCorreta = "7878";
 
 // IDENTIFICADOR DA SENHA
-const VERSAO_LOGIN = "1234";
+const VERSAO_LOGIN = "7878";
 
 // VERIFICA LOGIN
 if (localStorage.getItem("logado") !== VERSAO_LOGIN) {
