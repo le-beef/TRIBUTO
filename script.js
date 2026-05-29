@@ -313,9 +313,8 @@ async () => {
             link.click();
         });
     });
-btnEmitirVale.addEventListener(
-'click',
-async () => {
+
+btnEmitirVale.addEventListener('click', async () => {
 
     if(!mesaSelecionada){
         alert("Selecione uma mesa.");
@@ -572,11 +571,11 @@ async function gerarPDFVale(codigo, dados){
 
         const cod = dados.convidados[i].codigo;
 
-            const qrBase64 =
-            await QRCode.toDataURL(urlQR,{
-                width:500,
-                margin:1
-            });
+        // AQUI FOI CORRIGIDO: Agora ele usa a variável 'cod' no lugar de 'urlQR'
+        const qrBase64 = await QRCode.toDataURL(cod, {
+            width: 500,
+            margin: 1
+        });
 
         // ===== TAMANHO DO INGRESSO =====
         const largura = 90;
