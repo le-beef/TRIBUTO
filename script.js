@@ -572,10 +572,7 @@ async function gerarPDFVale(codigo, dados){
 
         const cod = dados.convidados[i].codigo;
 
-        const urlQR =
-`https://le-beef.github.io/TRIBUTO/validacao.html?cod=${cod}`;
-
-        const qrBase64 =
+            const qrBase64 =
             await QRCode.toDataURL(urlQR,{
                 width:500,
                 margin:1
