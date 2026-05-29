@@ -505,13 +505,12 @@ async () => {
             let entrou = 0;
             let faltam = 0;
 
-            html += `
-            <div style="
-                border:1px solid #ddd;
-                border-radius:12px;
-                padding:15px;
-                margin-bottom:15px;
-                background:#fff;
+              html += `
+                <div style="
+                    border:1px solid #ccc;
+                    padding:15px;
+                    margin:15px 0;
+                    border-radius:10px;
             ">
 
             <h3>
