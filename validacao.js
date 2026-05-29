@@ -43,20 +43,18 @@ async () => {
     codigoInput.value.trim();
 
     if(!codigo){
-
-        alert(
-        "Digite um código."
-        );
-
+        alert("Digite um código.");
         return;
     }
+
+    // 🔥 NOVO: Limpa o campo e foca nele automaticamente para o próximo ingresso
+    codigoInput.value = "";
+    codigoInput.focus();
 
     try{
 
         const snapshot =
-        await refReservas.once(
-        "value"
-        );
+        await refReservas.once("value");
 
         const reservas =
         snapshot.val();
